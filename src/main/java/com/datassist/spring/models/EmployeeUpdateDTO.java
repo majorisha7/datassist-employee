@@ -3,6 +3,7 @@ package com.datassist.spring.models;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Getter
@@ -34,7 +35,7 @@ public class EmployeeUpdateDTO {
 
     private boolean retired;
 
-    private int salary;
+    private BigDecimal salary;
 
     private String salaryCurrency;
 
