@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
@@ -44,7 +45,7 @@ public class Employee {
 
     private boolean retired;
 
-    private int salary;
+    private BigDecimal salary;
 
     private String salaryCurrency;
 
