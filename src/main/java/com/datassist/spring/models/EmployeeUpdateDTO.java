@@ -33,7 +33,7 @@ public class EmployeeUpdateDTO {
 
     private String profession;
 
-    private boolean retired;
+    private Boolean retired;
 
     private BigDecimal salary;
 

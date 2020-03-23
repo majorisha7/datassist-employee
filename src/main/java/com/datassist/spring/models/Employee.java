@@ -16,9 +16,9 @@ public class Employee {
     @Id
     private String id;
 
-    private int age;
+    private Integer age;
 
-    private int childCount;
+    private Integer childCount;
 
     private String citizenship;
 
@@ -45,7 +45,7 @@ public class Employee {
 
     private String profession;
 
-    private boolean retired;
+    private Boolean retired;
 
     private BigDecimal salary;
 
@@ -56,8 +56,8 @@ public class Employee {
     public Employee fromUpdateDTO(EmployeeUpdateDTO dto) {
         firstName = Optional.ofNullable(dto.getFirstName()).orElse(this.firstName);
         lastName = Optional.ofNullable(dto.getLastName()).orElse(this.lastName);
-        age = dto.getAge() == 0 ? this.age : dto.getAge();
-        childCount = dto.getChildCount() == 0 ? this.age : dto.getChildCount();
+        age = Optional.ofNullable(dto.getAge()).orElse(this.age);
+        childCount = Optional.ofNullable(dto.getChildCount()).orElse(this.childCount);
         citizenship = Optional.ofNullable(dto.getCitizenship()).orElse(this.citizenship);
         employeePhoto = Optional.ofNullable(dto.getEmployeePhoto()).orElse(this.employeePhoto);
         employer = Optional.ofNullable(dto.getEmployer()).orElse(this.employer);
@@ -68,7 +68,7 @@ public class Employee {
         salary = Optional.ofNullable(dto.getSalary()).orElse(this.salary);
         salaryCurrency = Optional.ofNullable(dto.getSalaryCurrency()).orElse(this.salaryCurrency);
         salaryPeriod = Optional.ofNullable(dto.getSalaryPeriod()).orElse(this.salaryPeriod);
-        retired = Optional.of(dto.isRetired()).orElse(this.retired);
+        retired = Optional.of(dto.getRetired()).orElse(this.retired);
         return this;
     }
 

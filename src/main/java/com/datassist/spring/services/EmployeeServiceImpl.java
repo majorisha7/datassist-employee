@@ -2,14 +2,12 @@ package com.datassist.spring.services;
 
 import com.datassist.spring.models.Employee;
 import com.datassist.spring.models.EmployeeRequestDTO;
-import com.datassist.spring.models.Gender;
 import com.datassist.spring.models.EmployeeUpdateDTO;
 import com.datassist.spring.repositories.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;

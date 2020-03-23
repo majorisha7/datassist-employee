@@ -1,6 +1,7 @@
 package com.datassist.spring;
 
 import com.datassist.spring.models.Employee;
+import com.datassist.spring.models.EmployeeRequestDTO;
 import com.datassist.spring.models.EmployeeUpdateDTO;
 import com.datassist.spring.repositories.EmployeeRepository;
 import com.datassist.spring.services.EmployeeService;
@@ -59,7 +60,7 @@ public class EmployeeServiceImplTest {
     }
 
     @Test
-    public void InvalidParamsWhenPutEmployeeThanShouldThrownException() {
+    public void invalidParamsWhenPutEmployeeThanShouldThrownException() {
         // Arrange
         EmployeeUpdateDTO updateDTO = new EmployeeUpdateDTO();
         updateDTO.setFirstName("qwe");
@@ -82,11 +83,46 @@ public class EmployeeServiceImplTest {
         Employee employee = prepareEmployee();
         when(employeeRepository.findById("123")).thenReturn(Optional.of(employee));
 
-        Employee response =  employeeService.put("123", updateDTO);
+        Employee response = employeeService.put("123", updateDTO);
         softly.assertThat(response.getFirstName()).isEqualTo(updateDTO.getFirstName());
         softly.assertThat(response.getAge()).isEqualTo(updateDTO.getAge());
         softly.assertThat(response.getLastName()).isEqualTo(updateDTO.getLastName());
     }
+
+    @Test
+    public void invalidParamsWhenDeleteEmployeeThanShouldThrownException() {
+        when(employeeRepository.findById("1234")).thenReturn(Optional.empty());
+        thrown.expect(ResponseStatusException.class);
+        thrown.expectMessage("Employee Not Found");
+
+
+        employeeService.remove("1234");
+
+    }
+
+    @Test
+    public void givenValidIdWhenGetEmployeeThenReturnNotThrownException() {
+        // Arrange
+        Employee employee = prepareEmployee(); // available employee in db id = 123
+        when(employeeRepository.findById(employee.getId())).thenReturn(Optional.of(employee));
+
+        // Act
+        Employee response =  employeeService.get("123");  // the object that the service returns to us
+
+        // Assert
+        softly.assertThat(response.getId()).isEqualTo(employee.getId());
+    }
+    @Test
+    public void postEmployee() {
+        // Arrange
+        EmployeeRequestDTO requestDTO = new EmployeeRequestDTO();
+        requestDTO.setFirstName("aa");
+        // Act
+        Employee response = employeeService.post(requestDTO);
+        // Assert
+        softly.assertThat(response.getFirstName()).isEqualTo(requestDTO.getFirstName());
+    }
+
 
     private Employee prepareEmployee() {
         Employee emp = new Employee();
