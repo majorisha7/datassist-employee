@@ -9,9 +9,9 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class EmployeeUpdateDTO {
-    private int age;
+    private Integer age;
 
-    private int childCount;
+    private Integer childCount;
 
     private String citizenship;
 
