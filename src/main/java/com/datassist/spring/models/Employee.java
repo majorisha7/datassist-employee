@@ -68,7 +68,8 @@ public class Employee {
         salary = Optional.ofNullable(dto.getSalary()).orElse(this.salary);
         salaryCurrency = Optional.ofNullable(dto.getSalaryCurrency()).orElse(this.salaryCurrency);
         salaryPeriod = Optional.ofNullable(dto.getSalaryPeriod()).orElse(this.salaryPeriod);
-        retired = Optional.of(dto.getRetired()).orElse(this.retired);
+        retired = Optional.ofNullable(dto.getRetired()).orElse(this.retired);
+
         return this;
     }
 
